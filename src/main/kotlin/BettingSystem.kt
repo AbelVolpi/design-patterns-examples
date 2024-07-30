@@ -1,11 +1,8 @@
 class BettingSystem {
-    private val users = mutableListOf<User>()
-    private val games = mutableListOf<Game>()
-    private val bets = mutableListOf<Bet>()
 
     fun registerUser(name: String): User {
         val user = User(name)
-        users.add(user)
+        BettingDatabase.addUser(user)
         return user
     }
 
@@ -21,7 +18,7 @@ class BettingSystem {
         val oddDraw = Odd("Draw", oddDrawValue)
 
         val game = Game(teamA, teamB, oddWinA, oddWinB, oddDraw)
-        games.add(game)
+        BettingDatabase.addGame(game)
         return game
     }
 
@@ -32,7 +29,7 @@ class BettingSystem {
             .game(game)
             .chosenOdd(chosenOdd)
             .build()
-        bets.add(bet)
+        BettingDatabase.addBet(bet)
         println("Bet placed: $bet")
     }
 
@@ -52,6 +49,7 @@ class BettingSystem {
         println("-----------------------------------------------------------------")
         println("| Team A         | Team B         | Odd WinA | Odd WinB | Draw  |")
         println("-----------------------------------------------------------------")
+        val games = BettingDatabase.getGames()
         for (game in games) {
             println(
                 "| ${game.teamA.padEnd(15)} | ${game.teamB.padEnd(13)} | ${
@@ -67,6 +65,7 @@ class BettingSystem {
         println("------------------------------------------------------------------------")
         println("| User           | Game                          | Chosen Odd | Amount |")
         println("------------------------------------------------------------------------")
+        val bets = BettingDatabase.getBets()
         for (bet in bets) {
             val gameInfo = "${bet.game.teamA} vs ${bet.game.teamB}"
             println(
@@ -83,7 +82,8 @@ class BettingSystem {
         println("------------------")
         println("| Name            |")
         println("------------------")
-        users.forEach { user ->
+        val users = BettingDatabase.getUsers()
+        for (user in users) {
             println("| ${user.name.padEnd(15)} |")
         }
         println("------------------")
