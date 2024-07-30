@@ -36,6 +36,10 @@ class BettingSystem {
         println("Bet placed: $bet")
     }
 
+    fun favoriteGame(user1: User, game1: Game) {
+        user1.favoriteGame(game1)
+    }
+
     fun updateOdds(game: Game, oddWinA: Double, oddWinB: Double, oddDraw: Double) {
         game.setOddWinA(oddWinA)
         game.setOddWinB(oddWinB)

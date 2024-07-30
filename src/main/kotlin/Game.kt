@@ -12,21 +12,15 @@ class Game(
     fun getOddDraw() = oddDraw
 
     fun setOddWinA(oddWinAValue: Double) {
-        if (this.oddWinA.value != oddWinAValue) {
-            this.oddWinA.value = oddWinAValue
-        }
+        this.oddWinA.value = oddWinAValue
     }
 
     fun setOddWinB(oddWinBValue: Double) {
-        if (this.oddWinB.value != oddWinBValue) {
-            this.oddWinB.value = oddWinBValue
-        }
+        this.oddWinB.value = oddWinBValue
     }
 
     fun setOddDraw(oddDraw: Double) {
-        if (this.oddDraw.value != oddDraw) {
-            this.oddDraw.value = oddDraw
-        }
+        this.oddDraw.value = oddDraw
     }
 
     private val gameObservers = mutableListOf<GameObserver>()

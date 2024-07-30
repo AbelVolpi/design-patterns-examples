@@ -10,7 +10,7 @@ fun main(args: Array<String>) {
     val game3 = system.createGame("Fluminense", "Vasco", 1.5, 3.0, 1.1)
 
     // Favorite games
-    user1.favoriteGame(game1)
+    system.favoriteGame(user1, game1)
 
     // Change Odds and notify users
     system.updateOdds(game1, 1.3, 3.0, 3.0)
