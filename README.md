@@ -46,6 +46,8 @@ single instance in the project to avoid creating multiple connections that would
 It is applied in the `BettingSystem`, which acts as an abstraction for the logic of creating and
 manipulating system objects.
 
+<img width="60%" src="doc/img1.png" />
+
 ### Observer
 
 It is applied between the `User` and `Game`, through the `GameObserver` interface. The `Game` object has a
