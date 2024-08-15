@@ -1,4 +1,4 @@
-data class Bet(
+class Bet private constructor(
     val bettor: User,
     val amount: Double,
     val game: Game,
