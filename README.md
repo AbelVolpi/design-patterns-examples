@@ -1,22 +1,56 @@
-## Design Patterns - Sistema de Apostas
+## Design Patterns - Bet System
 
-Este repositório destina-se a um exercício prático da matéria de padrões de projeto. A ideia principal é implementar
-os seguintes padrões num sistema fictício:
+This repository is intended for a practical exercise on the subject of design patterns. The main idea is to implement
+the following patterns in a fictitious system:
 
-- Criacional: Singleton e Builder
-- Estrutural: Facade
-- Comportamental: Observer
+- Creational: Singleton and Builder
+- Structural: Facade
+- Behavioral: Observer
 
-## Informações gerais
+The fictitious system chosen is a betting system that will have the following models:
 
-#### Alunos:
-- Abel - Matrícula: 202210503745
+- Game
+- User
+- Bet
 
-#### Documentação
+And the following options:
 
-[doc.md](doc/doc.md)
+- Create game,
+- Register user,
+- Place bet
+- Update game odds
+- Favorite game
 
-#### Links dos vídeos (foram feitos 2 por causa da limitação de 5 minutos do Loom):
+The design patterns will be applied as follows:
 
-- [vídeo 1](https://www.loom.com/share/8484857e830341afa9cc0199daa76c41?sid=4ce89df0-c2ae-43ea-936e-aa491dd2864e)
-- [vídeo 2](https://www.loom.com/share/3c69d3e7b87a4791851cb491170530de?sid=b6934df7-519d-4295-a5eb-e07e96605037)
+### Builder:
+
+`Bet` object will be created using this pattern, where it will be possible to create bets with the following structure:
+
+```
+val bet = Bet.Builder()
+   .bettor(bettor)
+   .amount(amount)
+   .game(game)
+   .chosenOdd(chosenOdd)
+   .build()
+```
+
+### Singleton
+
+`BettingDatabase` stores the data, but it represents a database connector, which would be recommended to have only a
+single instance in the project to avoid creating multiple connections that would generate inconsistencies.
+
+### Facade
+
+It is applied in the `BettingSystem`, which acts as an abstraction for the logic of creating and
+manipulating system objects.
+
+<img width="60%" src="doc/img1.png" />
+
+### Observer
+
+It is applied between the `User` and `Game`, through the `GameObserver` interface. The `Game` object has a
+function `addObserver`, which waits for a `GameObserver` object and saves it in a list (the `User` object implements this
+interface, so it can be added as an observer). When some odd value is changed, the `Game` iterates its list and notifies
+all linked `User` objects.
